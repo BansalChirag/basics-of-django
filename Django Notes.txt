@@ -153,3 +153,48 @@ INSTALLED_APPS = [
 ...
 'myapp',
 ]
+
+Jinja (or "Django Template Language"):
+Jinja is a popular templating engine originally made for Flask (another web framework).
+
+Django has its own similar template engine — but very close to Jinja in syntax.
+
+🔧 Example Syntax (Jinja or Django Templates):
+django
+Copy
+Edit
+{% if user.is_authenticated %}
+  <p>Welcome, {{ user.username }}</p>
+{% else %}
+  <p>Please log in.</p>
+{% endif %}
+{% %}: Template logic (if, for, load static, etc.)
+
+{{ }}: Variable output
+
+
+
+
+🔹 2. What is startapp in Django?
+✅ Purpose:
+startapp is a command used to create a new app (module) inside your Django project.
+
+An app is a component of your project that handles one particular feature (e.g., blog, user login, chat, etc.).
+
+🔧 Command:
+bash
+Copy
+Edit
+python manage.py startapp myapp
+📁 It creates:
+bash
+Copy
+Edit
+myapp/
+├── admin.py         # For Django admin integration
+├── apps.py          # App config
+├── models.py        # Database models
+├── views.py         # Business logic (functions/classes that return web pages)
+├── urls.py          # (You usually create this) — for app-specific routes
+├── migrations/      # DB change trackers
+└── __init__.py
