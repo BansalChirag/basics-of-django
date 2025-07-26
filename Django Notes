@@ -53,3 +53,67 @@ urls.py-> routing file -> means where you can go (on which urls basically)
 views.py-> means it defines all your controllers or functionality
 
 models.py-> stores all your database or models
+
+{% load static %}
+Purpose: Tells Django to enable the {% static %} template tag.
+
+Use: You need this at the top whenever you're using static files (CSS, JS, images).
+
+Django uses this tag to locate and serve static files during development.
+
+in setting.py
+STATIC_URL = 'static/'
+✅ What it means:
+This sets the base URL for serving static files in development.
+
+So when you use:
+
+django
+
+{% static 'myfile.css' %}
+Django will generate:
+
+<link href="/static/myfile.css">
+You’ll use this in development to tell Django:
+“Serve all static files from the /static/ path in the browser.”
+
+🔹 2. STATICFILES_DIRS = [os.path.join(BASE_DIR, 'styles')]
+✅ What it means:
+This tells Django:
+
+“In addition to app-level static/ folders, also look inside the styles/ folder (in the project root) for static files.”
+
+🔍 Details:
+BASE_DIR is the root directory of your Django project.
+
+os.path.join(BASE_DIR, 'styles') evaluates to something like:
+
+/home/user/myproject/styles
+So if you have:
+
+myproject/
+├── styles/
+│ └── style.css
+Then you can use:
+
+django
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'style.css' %}" />
+Even though the file is in the styles/ folder, Django will serve it at:
+
+bash
+
+http://localhost:8000/static/style.css
+✅ Why use STATICFILES_DIRS?
+Because by default, Django only looks for static files in:
+
+Each app's static/ folder.
+
+So if you want to keep static files outside your apps, like in a global styles/ or assets/ folder, you must add that folder here.
+
+💡 Summary
+Setting Purpose
+STATIC_URL URL prefix for serving static files (/static/)
+STATICFILES_DIRS Extra folders (outside apps) where Django will look for static files
