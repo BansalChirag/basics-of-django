@@ -8,4 +8,20 @@ Chai Page
 <h1>
   All Chai for you
 </h1>
+
+{% for chai  in  chais %}
+  <div class="chai-item">
+    <h2>{{ chai.name }}</h2>
+    <p>{{ chai.description }}</p>
+    <img src="{{ chai.image.url }}" alt="{{ chai.name }}" style="width: 200px; height: 200px;">
+    <p>Price: {{ chai.price }} INR</p>
+    <p>Rating: {{ chai.rating }}/5</p>
+    <p>Available: {{ chai.available|yesno:"Yes,No" }}</p>
+<a href="{% url 'chai_detail' chai.id %}">
+        <button type='button'>View complete details of {{chai.type}} - {{chai.id}}</button>
+    </a>
+  </div>
+{% endfor %}
 {% endblock %}
+
+
