@@ -1,0 +1,55 @@
+What is a Virtual Environment?
+A virtual environment is a self-contained directory that contains a Python interpreter and packages specific to a particular project. It isolates your project’s dependencies from the system-wide Python environment, avoiding version conflicts and helping to manage packages cleanly.
+
+Why Use a Virtual Environment?
+Avoid conflicts between dependencies across projects.
+
+Maintain cleaner, more manageable development environments.
+
+Easily recreate the environment using a requirements.txt file.
+
+🔹 How to Create and Use a Virtual Environment
+
+1. Create a Virtual Environment
+   Using venv (built-in): python -m venv myenv
+
+2.✅ Activate the Virtual Environment
+Windows: myenv\Scripts\activate
+macOS/Linux: source myenv/bin/activate
+
+Once activated, your terminal will show the environment name like:
+
+(myenv) $
+
+3. Install Packages Inside Virtual Env
+   pip install <package-name>
+   Example: pip install requests
+
+4. Save Installed Packages
+   To save your project dependencies: pip freeze > requirements.txt
+   To install them later on another system: pip install -r requirements.txt
+
+5. Deactivate the Virtual Environment
+   When done working: deactivate
+
+🔹 What is django-admin?
+django-admin is a command-line tool provided by Django to help you interact with and manage Django projects. It can be used to create projects, run development servers, manage databases, and more.
+
+🔧 Where Does It Come From?
+It’s automatically installed when you install Django:
+
+pip install django
+
+first command : django-admin startproject projectName
+
+used to start or initialize the project
+
+sqlite3 default database used in django
+
+settings.py -> whole configuration of your project is written here
+
+urls.py-> routing file -> means where you can go (on which urls basically)
+
+views.py-> means it defines all your controllers or functionality
+
+models.py-> stores all your database or models
