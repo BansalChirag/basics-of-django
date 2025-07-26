@@ -38,7 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tutorial',
+    'tailwind',
+    'theme',
+    'django_browser_reload',  # For live reloading during development
 ]
+
+TAILWIND_APP_NAME  = 'theme' # whatever you have # Tailwind CSS app name            
+INTERNAL_IPS = ['127.0.0.1']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -48,6 +54,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'django_browser_reload.middleware.BrowserReloadMiddleware',  # Middleware for live reloading
 ]
 
 ROOT_URLCONF = 'djangoTutorial.urls'

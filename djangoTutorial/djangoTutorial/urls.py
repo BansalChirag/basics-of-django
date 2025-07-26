@@ -22,5 +22,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home,name='home'), # name parameter is optional
     path('about/',views.about,name='about'), # slash is mandatory
-    path('chai/',include('tutorial.urls')) # slash is mandatory
-]
+    path('chai/',include('tutorial.urls')), # slash is mandatory
+
+
+
+
+    # it should be at the end of the urlpatterns list
+    path('__reload__/', include('django_browser_reload.urls')),  # For live reloading   
+ ]
