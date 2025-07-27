@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV='/home/office-user/Desktop/New Folder 1/basics-of-django/.venv'
+VIRTUAL_ENV=/home/office-user/Desktop/Django-tutorial/basics-of-django/.venv
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

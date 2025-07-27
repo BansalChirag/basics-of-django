@@ -333,3 +333,72 @@ Go to:
 http://127.0.0.1:8000/admin
 
 Log in using the credentials you just created.
+
+
+
+
+Relationship Models 
+
+1. One to Many->  left has one entity and right has many entities
+
+
+In a database, "cascade" refers to an automatic propagation of changes (like delete, update, or insert) from one table to another based on relationships — typically foreign key constraints.
+
+🧠 Common Types of Cascade Actions:
+ON DELETE CASCADE
+
+If a parent row is deleted, all related child rows are automatically deleted.
+
+Example: Deleting a user also deletes all their posts.
+
+ON UPDATE CASCADE
+
+If the primary key in the parent table is updated, the foreign keys in the child table are automatically updated.
+
+Useful if the primary key (e.g., user ID) can change.
+
+🔗 Example in SQL:
+sql
+Copy
+Edit
+CREATE TABLE users (
+  id INT PRIMARY KEY
+);
+
+CREATE TABLE posts (
+  id INT PRIMARY KEY,
+  user_id INT,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+In this example, if a user is deleted from the users table, all their posts in the posts table are automatically deleted.
+
+✅ Benefits:
+Maintains referential integrity
+
+Reduces boilerplate logic in application code
+
+Prevents orphan records (child rows without a valid parent)
+
+
+
+
+Feature	auto_now_add=True	default=timezone.now
+Timezone Support	✅ Yes (uses timezone.now() internally)	✅ Yes (you explicitly call timezone.now)
+Value Set On	Object creation only	Object creation (or manually overridden)
+Manual Override	❌ No — read-only	✅ Yes — flexible
+Editable in Forms/Admin	❌ No	✅ Yes
+Good for	Strict, auto-generated timestamps	Customizable timestamps
+Updates After Creation	❌ Never	✅ If you allow it
+
+
+
+
+
+
+
+
+2. Many to Many relationship-> one chai can be present on many stores and many chais can be present on one store
+
+
+
+3 one to one relationship-> every field is asociatod to only one relationship
