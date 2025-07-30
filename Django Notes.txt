@@ -402,3 +402,22 @@ Updates After Creation	❌ Never	✅ If you allow it
 
 
 3 one to one relationship-> every field is asociatod to only one relationship
+
+
+
+file structure of a django project: 
+1. manage.py->
+
+2. project folder(inside the project you created )-> for example my-site
+
+3. my-site/__init__.py
+
+4.my-site/settings.py
+
+5.my-site/urls.py
+
+6.my-site/asgi.py
+
+
+what is a project in django
+what is an app in django
