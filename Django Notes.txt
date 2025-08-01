@@ -421,3 +421,24 @@ file structure of a django project:
 
 what is a project in django
 what is an app in django
+
+Python Json 
+Python has a built in package called json which is used to work with json data(value="") 
+
+dumps(data) - this is used to convert python object into json string
+
+
+Serializers
+what are serializers?
+in DRF , serializers are responsible for converting complex data such as querysets and model instances to native Python datatypes (called serialization) that can then be easily rendered into JSON,XML or other content types which is esily understandable by frontend
+
+Serializers are also responsibel for deserializtion which means it allows parsed data to be converted back into complex types, after first validating the incoming data
+
+Serializer Class
+
+
+what is de-serialization
+
+de-serialization allows parsed data to be converted back into complex data types , after first validating the incoming data type
+
+
