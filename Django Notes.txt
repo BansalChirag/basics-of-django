@@ -442,3 +442,115 @@ what is de-serialization
 de-serialization allows parsed data to be converted back into complex data types , after first validating the incoming data type
 
 
+
+
+Great question!
+
+🔹 What is @property in Python?
+@property is a decorator in Python that allows you to define a method that can be accessed like an attribute, without needing to call it like a method.
+
+🔸 Without @property
+python
+Copy
+Edit
+class Product:
+    def __init__(self, stock):
+        self.stock = stock
+
+    def in_stock(self):
+        return self.stock > 0
+
+p = Product(5)
+print(p.in_stock())  # You have to call it like a method
+🔸 With @property
+python
+Copy
+Edit
+class Product:
+    def __init__(self, stock):
+        self.stock = stock
+
+    @property
+    def in_stock(self):
+        return self.stock > 0
+
+p = Product(5)
+print(p.in_stock)  # You can access it like a regular attribute
+✅ Why use @property?
+Cleaner syntax: You can access calculated values like attributes.
+
+Encapsulation: It hides the method logic from the user but still performs a computation.
+
+Read-only attributes: It can be used to expose read-only data.
+
+🔸 In Your Model
+python
+Copy
+Edit
+@property
+def in_stock(self):
+    return self.stock > 0
+This means:
+
+Instead of writing product.in_stock(), you just write product.in_stock.
+
+It gives you the appearance of a field/attribute, even though it’s being calculated.
+
+Let me know if you'd like to go deeper (e.g., how to add a setter with @in_stock.setter).
+
+
+
+
+products = models.ManyToManyField(Product, through="OrderItem", related_name='orders')
+is used in a Django model (likely an Order model) to define a many-to-many relationship with the Product model. But instead of using the default auto-created table to manage that relationship, it uses a custom intermediate model (OrderItem) to store extra information.
+
+🔍 Let's break it down:
+✅ models.ManyToManyField(Product)
+This means an order can contain many products, and a product can be in many orders (many-to-many relationship).
+
+In simpler cases, Django automatically creates a "hidden" join table to store the links between orders and products.
+
+✅ through="OrderItem"
+This tells Django not to use the default hidden join table.
+
+Instead, use a custom model named OrderItem.
+
+This is useful when you want to store additional details about each product in an order (e.g., quantity, price at time of order).
+
+So you're saying:
+"This many-to-many relationship goes through the OrderItem model, which contains more info about the relationship."
+
+✅ related_name='orders'
+This is the reverse relationship name.
+
+It allows you to access the orders from a product like:
+
+python
+Copy
+Edit
+some_product.orders.all()
+💡 Example of Full Setup
+python
+Copy
+Edit
+class Order(models.Model):
+    products = models.ManyToManyField(Product, through="OrderItem", related_name='orders')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)  # price at the time of order
+✅ Why Use through?
+It gives you more control. For example:
+
+Track how many units of each product were ordered.
+
+Store the price at the time of the order (even if the product price later changes).
+
+Log things like discounts, shipping status, etc.
+
+
+
+what is querySet
